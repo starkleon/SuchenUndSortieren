@@ -4,6 +4,39 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Sorting {
+    public static void bogoSort(int [] array){
+        int count = 0;
+        boolean isSorted = false;
+        while(!isSorted){
+            shuffle(array);
+            isSorted = true;
+            for(int i = 0; i < array.length -1 ; i++){
+                if(array[i] > array[i+1]){
+                    isSorted = false;
+                    break;
+                }
+            }
+            count++;
+            System.out.println(Arrays.toString(array));
+        }
+        System.out.println(Arrays.toString(array) + " \t Anzahl trys: " +count);
+    }
+
+
+    private static void shuffle(int[] a){
+        Random r = new Random();
+        int tmp = 0;
+        for(int i = 0 ; i < a.length; i++){
+            int nextI = r.nextInt(0, a.length -1);
+            tmp = a[i];
+            a[i] = a[nextI];
+            a[nextI] = tmp;
+        }
+    }
+
+
+
+
 
     public static int[] mergeSort(int[] array){
         if(array == null){
@@ -120,15 +153,15 @@ public class Sorting {
 
     public static void main(String[] args){
         Random r = new Random();
-        int[] ints = new int[10];
+        int[] ints = new int[5];
         for(int i = 0; i < ints.length; i++){
-            ints[i] = r.nextInt(0, 50);
+            ints[i] = r.nextInt(0, 20);
         }
 
-        System.out.println(Arrays.toString(ints));
+        //System.out.println(Arrays.toString(ints));
 
 
-        selectionSort(ints);
-        System.out.println(Arrays.toString(ints));
+        bogoSort(ints);
+        //System.out.println(Arrays.toString(ints));
     }
 }
